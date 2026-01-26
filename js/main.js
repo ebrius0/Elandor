@@ -4,10 +4,7 @@ import { initUI } from "./ui/ui.js";
 document.addEventListener("DOMContentLoaded", () => {
   GameState.init();
   initUI();
-});
-
-GameState.init();
-initUI();
+}
 
 GameState.load();
 GameState.init();
