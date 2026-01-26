@@ -1,6 +1,11 @@
 import { GameState } from "./core/gamestate.js";
 import { initUI } from "./ui/ui.js";
 
+document.addEventListener("DOMContentLoaded", () => {
+  GameState.init();
+  initUI();
+});
+
 GameState.init();
 initUI();
 
