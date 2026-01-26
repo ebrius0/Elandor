@@ -1,5 +1,8 @@
 import { GameState } from "./core/gamestate.js";
-import { render } from "./ui/ui.js";
+import { initUI } from "./ui/ui.js";
+
+GameState.init();
+initUI();
 
 GameState.load();
 GameState.init();
