@@ -1,17 +1,14 @@
+// js/main.js
+
 import { GameState } from "./core/gamestate.js";
 import { initUI } from "./ui/ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Spielzustand initialisieren
   GameState.init();
+
+  // UI erst starten, wenn das DOM wirklich geladen ist
   initUI();
-}
 
-GameState.load();
-GameState.init();
-render();
-
-setInterval(() => {
-  GameState.nextDay();
-  render();
-  GameState.save();
-}, 30000);
+  console.log("Elandor gestartet");
+});
