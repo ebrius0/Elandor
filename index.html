@@ -2,36 +2,52 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Elandor – Schiffshändler</title>
+    <title>Elandor</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="game">
+
     <h1>Elandor</h1>
 
-    <div id="status">
-        <p><strong>Stadt:</strong> <span id="cityName"></span></p>
-        <p><strong>Einwohner:</strong> <span id="population"></span></p>
-        <p><strong>Gold:</strong> <span id="gold"></span></p>
-        <p><strong>Ruf:</strong> <span id="reputation"></span></p>
+    <!-- HAUPTMENÜ -->
+    <div id="mainMenu" class="menu">
+        <button onclick="openView('map')">🌍 Weltkarte</button>
+        <button onclick="openView('cities')">🏙️ Städte</button>
+        <button onclick="openView('ships')">🚢 Schiffe</button>
     </div>
 
-    <h2>Schiffsladung</h2>
-    <ul id="cargo"></ul>
+    <!-- WELTKARTE -->
+    <div id="view-map" class="view hidden">
+        <h2>Weltkarte</h2>
+        <p>(Platzhalter – kommt später)</p>
+        <button onclick="backToMenu()">Zurück</button>
+    </div>
 
-    <h2>Markt</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Ware</th>
-                <th>Kaufen</th>
-                <th>Verkaufen</th>
-                <th>Aktion</th>
-            </tr>
-        </thead>
-        <tbody id="market"></tbody>
-    </table>
+    <!-- STÄDTE -->
+    <div id="view-cities" class="view hidden">
+        <h2>Stadt: Startstadt</h2>
+
+        <div class="submenu">
+            <button onclick="cityAction('kontor')">🏗️ Kontor</button>
+            <button onclick="cityAction('tavern')">🍺 Taverne</button>
+            <button onclick="cityAction('council')">🏛️ Ratshaus</button>
+            <button onclick="cityAction('build')">🧱 Gebäude bauen</button>
+            <button onclick="cityAction('market')">🧺 Markt</button>
+        </div>
+
+        <div id="cityOutput" class="panel"></div>
+
+        <button onclick="backToMenu()">Zurück</button>
+    </div>
+
+    <!-- SCHIFFE -->
+    <div id="view-ships" class="view hidden">
+        <h2>Schiffe</h2>
+        <div id="shipList"></div>
+        <button onclick="backToMenu()">Zurück</button>
+    </div>
 
 </div>
 
