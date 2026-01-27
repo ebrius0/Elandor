@@ -1,59 +1,103 @@
-body {
-    margin: 0;
-    font-family: Georgia, serif;
-    background: #5a3e2b;
-    color: #f5e6c8;
+// =======================
+// GRUNDSTRUKTUR
+// =======================
+
+const views = ["map", "cities", "ships"];
+
+function openView(name) {
+    views.forEach(v => {
+        document.getElementById(`view-${v}`).classList.add("hidden");
+    });
+    document.getElementById(`view-${name}`).classList.remove("hidden");
 }
 
-#game {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
+function backToMenu() {
+    views.forEach(v => {
+        document.getElementById(`view-${v}`).classList.add("hidden");
+    });
 }
 
-h1, h2 {
-    text-align: center;
+// =======================
+// STADT
+// =======================
+
+const city = {
+    name: "Startstadt",
+    population: 6000
+};
+
+function cityAction(action) {
+    const output = document.getElementById("cityOutput");
+
+    switch (action) {
+        case "kontor":
+            output.innerHTML = "<h3>Kontor</h3><p>Hier kannst du Waren lagern (noch nicht implementiert).</p>";
+            break;
+        case "tavern":
+            output.innerHTML = "<h3>Taverne</h3><p>Gerüchte, Kontakte und Ruf (später).</p>";
+            break;
+        case "council":
+            output.innerHTML = "<h3>Ratshaus</h3><p>Politische Entscheidungen & Einfluss (später).</p>";
+            break;
+        case "build":
+            output.innerHTML = "<h3>Gebäude bauen</h3><p>Wohnhäuser, Produktion & Politik (später).</p>";
+            break;
+        case "market":
+            output.innerHTML = "<h3>Markt</h3><p>Handelssystem (kommt als nächster Schritt).</p>";
+            break;
+    }
 }
 
-.menu, .submenu {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-    flex-wrap: wrap;
+// =======================
+// SCHIFFE
+// =======================
+
+const ships = [
+    {
+        id: 1,
+        name: "Seemöwe",
+        location: "Startstadt",
+        destination: "Hafenstadt",
+        timeRemaining: 4,
+        cargo: {
+            Getreide: 5,
+            Wein: 2
+        }
+    },
+    {
+        id: 2,
+        name: "Nordwind",
+        location: "Hafenstadt",
+        destination: null,
+        timeRemaining: 0,
+        cargo: {
+            Fisch: 6
+        }
+    }
+];
+
+function renderShips() {
+    const list = document.getElementById("shipList");
+    list.innerHTML = "";
+
+    ships.forEach(ship => {
+        const div = document.createElement("div");
+        div.className = "shipCard";
+
+        let cargoText = Object.keys(ship.cargo).length === 0
+            ? "Leer"
+            : Object.entries(ship.cargo).map(([g, a]) => `${g}: ${a}`).join(", ");
+
+        div.innerHTML = `
+            <h3>${ship.name}</h3>
+            <p><strong>Standort:</strong> ${ship.location}</p>
+            <p><strong>Ziel:</strong> ${ship.destination ?? "—"}</p>
+            <p><strong>Restzeit:</strong> ${ship.timeRemaining > 0 ? ship.timeRemaining + " Min" : "Bereit"}</p>
+            <p><strong>Ladung:</strong> ${cargoText}</p>
+        `;
+
+        list.appendChild(div);
+    });
 }
 
-button {
-    background: #3d2a1a;
-    color: #f5e6c8;
-    border: 2px solid #2a1a10;
-    padding: 12px 18px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #6b4a2f;
-}
-
-.view {
-    margin-top: 20px;
-}
-
-.hidden {
-    display: none;
-}
-
-.panel {
-    background: #7b5a3a;
-    padding: 15px;
-    border: 2px solid #3d2a1a;
-    margin: 20px 0;
-}
-
-.shipCard {
-    background: #7b5a3a;
-    border: 2px solid #3d2a1a;
-    padding: 15px;
-    margin-bottom: 15px;
-}
+renderShips();
