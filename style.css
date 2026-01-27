@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background-color: #5a3e2b;
+    color: #f5e6c8;
+}
+
+#game {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #7b5a3a;
+}
+
+th, td {
+    border: 1px solid #3d2a1a;
+    padding: 8px;
+    text-align: center;
+}
+
+button {
+    background-color: #3d2a1a;
+    color: #f5e6c8;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #5a3e2b;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
