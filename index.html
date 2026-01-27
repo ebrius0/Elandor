@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <title>Elandor</title>
-  <script type="module" src="js/main.js"></script>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Elandor – Schiffshändler</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Elandor – Händlerchroniken</h1>
+<div id="game">
+    <h1>Elandor</h1>
 
-<label for="stadtSelect">Stadt wählen:</label>
-<select id="stadtSelect"></select>
+    <div id="status">
+        <p><strong>Stadt:</strong> <span id="cityName"></span></p>
+        <p><strong>Einwohner:</strong> <span id="population"></span></p>
+        <p><strong>Gold:</strong> <span id="gold"></span></p>
+        <p><strong>Ruf:</strong> <span id="reputation"></span></p>
+    </div>
 
-<div id="karteContainer">
-  <h2>Weltkarte</h2>
-  <div id="kartenPlatzhalter">
-    🗺️ Weltkarte folgt bald …
-  </div>
+    <h2>Schiffsladung</h2>
+    <ul id="cargo"></ul>
+
+    <h2>Markt</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ware</th>
+                <th>Kaufen</th>
+                <th>Verkaufen</th>
+                <th>Aktion</th>
+            </tr>
+        </thead>
+        <tbody id="market"></tbody>
+    </table>
+
 </div>
 
-<hr>
-
-<div id="stadtInfo"></div>
-<div id="aktionsBereich"></div>
-
+<script src="main.js"></script>
 </body>
 </html>
