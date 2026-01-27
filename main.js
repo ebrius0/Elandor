@@ -1,134 +1,59 @@
-// ==========================
-// SPIELDATEN
-// ==========================
-
-const goods = {
-    Getreide: { base: 5, type: "basic" },
-    Fisch: { base: 6, type: "basic" },
-    Holz: { base: 7, type: "basic" },
-    Stoffe: { base: 13, type: "processed" },
-    Werkzeuge: { base: 15, type: "processed" },
-    Wein: { base: 26, type: "luxury" },
-    Gewürze: { base: 34, type: "luxury" },
-    Schmuck: { base: 45, type: "luxury" }
-};
-
-const city = {
-    name: "Startstadt",
-    population: 6000,
-    marketModifier: {
-        Getreide: 0.95,
-        Fisch: 1.0,
-        Holz: 1.0,
-        Stoffe: 1.1,
-        Werkzeuge: 1.1,
-        Wein: 1.2,
-        Gewürze: 1.25,
-        Schmuck: 1.3
-    }
-};
-
-const player = {
-    gold: 100,
-    reputation: 0,
-    ship: {
-        capacity: 12,
-        cargo: {}
-    }
-};
-
-// ==========================
-// PREISBERECHNUNG
-// ==========================
-
-function demandFactor(type, population) {
-    if (type === "basic") {
-        return population < 5000 ? 0.95 : population < 15000 ? 1.0 : 1.1;
-    }
-    if (type === "processed") {
-        return population < 5000 ? 0.9 : population < 15000 ? 1.1 : 1.25;
-    }
-    if (type === "luxury") {
-        return population < 5000 ? 0.8 : population < 15000 ? 1.3 : 1.6;
-    }
-    return 1;
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: #5a3e2b;
+    color: #f5e6c8;
 }
 
-function randomFactor() {
-    return 0.9 + Math.random() * 0.2;
+#game {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
 }
 
-function getPrice(good, mode) {
-    const data = goods[good];
-    let price =
-        data.base *
-        city.marketModifier[good] *
-        demandFactor(data.type, city.population) *
-        randomFactor();
-
-    if (mode === "sell") price *= 1.15;
-    return Math.round(price);
+h1, h2 {
+    text-align: center;
 }
 
-// ==========================
-// HANDEL
-// ==========================
-
-function buy(good) {
-    const price = getPrice(good, "buy");
-    const load = Object.values(player.ship.cargo).reduce((a, b) => a + b, 0);
-
-    if (player.gold >= price && load < player.ship.capacity) {
-        player.gold -= price;
-        player.ship.cargo[good] = (player.ship.cargo[good] || 0) + 1;
-        render();
-    }
+.menu, .submenu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
 }
 
-function sell(good) {
-    if (player.ship.cargo[good] > 0) {
-        const price = getPrice(good, "sell");
-        player.ship.cargo[good]--;
-        if (player.ship.cargo[good] === 0) delete player.ship.cargo[good];
-        player.gold += price;
-        player.reputation += goods[good].type === "luxury" ? 3 : goods[good].type === "processed" ? 2 : 1;
-        render();
-    }
+button {
+    background: #3d2a1a;
+    color: #f5e6c8;
+    border: 2px solid #2a1a10;
+    padding: 12px 18px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-// ==========================
-// RENDER
-// ==========================
-
-function render() {
-    document.getElementById("cityName").textContent = city.name;
-    document.getElementById("population").textContent = city.population;
-    document.getElementById("gold").textContent = player.gold;
-    document.getElementById("reputation").textContent = player.reputation;
-
-    const cargo = document.getElementById("cargo");
-    cargo.innerHTML = "";
-    for (let good in player.ship.cargo) {
-        const li = document.createElement("li");
-        li.textContent = `${good}: ${player.ship.cargo[good]}`;
-        cargo.appendChild(li);
-    }
-
-    const market = document.getElementById("market");
-    market.innerHTML = "";
-    for (let good in goods) {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-            <td>${good}</td>
-            <td>${getPrice(good, "buy")}</td>
-            <td>${getPrice(good, "sell")}</td>
-            <td>
-                <button onclick="buy('${good}')">Kaufen</button>
-                <button onclick="sell('${good}')">Verkaufen</button>
-            </td>
-        `;
-        market.appendChild(tr);
-    }
+button:hover {
+    background: #6b4a2f;
 }
 
-render();
+.view {
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.panel {
+    background: #7b5a3a;
+    padding: 15px;
+    border: 2px solid #3d2a1a;
+    margin: 20px 0;
+}
+
+.shipCard {
+    background: #7b5a3a;
+    border: 2px solid #3d2a1a;
+    padding: 15px;
+    margin-bottom: 15px;
+}
