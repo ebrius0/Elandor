@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Elandor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +12,7 @@
     <h1>Elandor</h1>
 
     <!-- HAUPTMENÜ -->
-    <div id="mainMenu" class="menu">
+    <div id="mainMenu" class="menu vertical">
         <button onclick="openView('map')">🌍 Weltkarte</button>
         <button onclick="openView('cities')">🏙️ Städte</button>
         <button onclick="openView('ships')">🚢 Schiffe</button>
@@ -20,25 +21,23 @@
     <!-- WELTKARTE -->
     <div id="view-map" class="view hidden">
         <h2>Weltkarte</h2>
-        <p>(Noch unbekanntes Land)</p>
-        <button onclick="backToMenu()">Zurück</button>
+        <p>(Unbekannte Gewässer)</p>
+        <button class="back" onclick="backToMenu()">Zurück</button>
     </div>
 
     <!-- STÄDTE -->
     <div id="view-cities" class="view hidden">
         <h2>Bekannte Städte</h2>
         <div id="cityList"></div>
-
-        <div id="cityActions" class="hidden panel"></div>
-
-        <button onclick="backToMenu()">Zurück</button>
+        <div id="cityActions" class="panel hidden"></div>
+        <button class="back" onclick="backToMenu()">Zurück</button>
     </div>
 
     <!-- SCHIFFE -->
     <div id="view-ships" class="view hidden">
         <h2>Schiffe</h2>
         <div id="shipList"></div>
-        <button onclick="backToMenu()">Zurück</button>
+        <button class="back" onclick="backToMenu()">Zurück</button>
     </div>
 </div>
 
