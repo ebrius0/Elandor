@@ -8,7 +8,6 @@
 <body>
 
 <div id="game">
-
     <h1>Elandor</h1>
 
     <!-- HAUPTMENÜ -->
@@ -21,23 +20,16 @@
     <!-- WELTKARTE -->
     <div id="view-map" class="view hidden">
         <h2>Weltkarte</h2>
-        <p>(Platzhalter – kommt später)</p>
+        <p>(Noch unbekanntes Land)</p>
         <button onclick="backToMenu()">Zurück</button>
     </div>
 
     <!-- STÄDTE -->
     <div id="view-cities" class="view hidden">
-        <h2>Stadt: Startstadt</h2>
+        <h2>Bekannte Städte</h2>
+        <div id="cityList"></div>
 
-        <div class="submenu">
-            <button onclick="cityAction('kontor')">🏗️ Kontor</button>
-            <button onclick="cityAction('tavern')">🍺 Taverne</button>
-            <button onclick="cityAction('council')">🏛️ Ratshaus</button>
-            <button onclick="cityAction('build')">🧱 Gebäude bauen</button>
-            <button onclick="cityAction('market')">🧺 Markt</button>
-        </div>
-
-        <div id="cityOutput" class="panel"></div>
+        <div id="cityActions" class="hidden panel"></div>
 
         <button onclick="backToMenu()">Zurück</button>
     </div>
@@ -48,7 +40,6 @@
         <div id="shipList"></div>
         <button onclick="backToMenu()">Zurück</button>
     </div>
-
 </div>
 
 <script src="main.js"></script>
