@@ -1,47 +1,57 @@
 <!DOCTYPE html>
-<body style="background:red">
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Elandor</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ELANDOR | Handels-Epos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="game">
-    <h1>Elandor</h1>
+    <header id="top-bar">
+        <div class="stat">💰 <span id="stat-gold">500</span></div>
+        <div class="stat">🏆 <span id="stat-rep">0</span> (Global)</div>
+    </header>
 
-    <!-- HAUPTMENÜ -->
-    <div id="mainMenu" class="menu vertical">
-        <button onclick="openView('map')">🌍 Weltkarte</button>
-        <button onclick="openView('cities')">🏙️ Städte</button>
-        <button onclick="openView('ships')">🚢 Schiffe</button>
-    </div>
+    <main id="game-container">
+        <section id="screen-cities" class="screen active">
+            <h2>Städte von Elandor</h2>
+            <div id="city-list" class="list-container">
+                </div>
+        </section>
 
-    <!-- WELTKARTE -->
-    <div id="view-map" class="view hidden">
-        <h2>Weltkarte</h2>
-        <p>(Unbekannte Gewässer)</p>
-        <button class="back" onclick="backToMenu()">Zurück</button>
-    </div>
+        <section id="screen-city-detail" class="screen">
+            <button class="btn-back" onclick="ui.showScreen('screen-cities')">← Zurück zur Karte</button>
+            <h2 id="current-city-name">Stadtname</h2>
+            <div class="city-buildings">
+                <button class="menu-btn" onclick="ui.openBuilding('Taverne')">🍺 Taverne</button>
+                <button class="menu-btn" onclick="ui.openBuilding('Werft')">🚢 Werft</button>
+                <button class="menu-btn" onclick="ui.openBuilding('Kontor')">📦 Kontor</button>
+                <button class="menu-btn" onclick="ui.openBuilding('Rathaus')">🏛️ Rathaus</button>
+            </div>
+            <div id="building-content" class="info-box">
+                </div>
+        </section>
 
-    <!-- STÄDTE -->
-    <div id="view-cities" class="view hidden">
-        <h2>Bekannte Städte</h2>
-        <div id="cityList"></div>
-        <div id="cityActions" class="panel hidden"></div>
-        <button class="back" onclick="backToMenu()">Zurück</button>
-    </div>
+        <section id="screen-ships" class="screen">
+            <h2>Deine Flotte</h2>
+            <div id="ship-list" class="list-container">
+                </div>
+        </section>
 
-    <!-- SCHIFFE -->
-    <div id="view-ships" class="view hidden">
-        <h2>Schiffe</h2>
-        <div id="shipList"></div>
-        <button class="back" onclick="backToMenu()">Zurück</button>
-    </div>
-</div>
+        <section id="screen-log" class="screen">
+            <h2>Ereignis-Logbuch</h2>
+            <div id="log-container" class="list-container">
+                </div>
+        </section>
+    </main>
 
-<script src="main.js"></script>
+    <nav id="main-nav">
+        <button onclick="ui.showScreen('screen-cities')">🏙️ Städte</button>
+        <button onclick="ui.showScreen('screen-ships')">🚢 Schiffe</button>
+        <button onclick="ui.showScreen('screen-log')">📜 Log</button>
+    </nav>
+
+    <script src="main.js"></script>
 </body>
 </html>
