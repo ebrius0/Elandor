@@ -1,59 +1,120 @@
+:root {
+    --bg-color: #1a1a1a;
+    --card-bg: #2a2a2a;
+    --accent: #d4af37; /* Gold */
+    --text: #e0e0e0;
+    --safe: #2ecc71;
+    --danger: #e74c3c;
+    --nav-height: 70px;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
 body {
     margin: 0;
-    font-family: Georgia, serif;
-    background: #5a3e2b;
-    color: #f5e6c8;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text);
+    overflow: hidden; /* Verhindert Bouncing auf Mobile */
 }
 
-#game {
-    max-width: 600px;
-    margin: auto;
+/* Layout */
+#top-bar {
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #000;
+    border-bottom: 2px solid var(--accent);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#game-container {
+    margin-top: 50px;
+    margin-bottom: var(--nav-height);
+    height: calc(100vh - 50px - var(--nav-height));
+    overflow-y: auto;
     padding: 15px;
 }
 
-h1, h2 {
-    text-align: center;
+#main-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: var(--nav-height);
+    display: flex;
+    background: #111;
+    border-top: 1px solid #333;
 }
 
-.menu.vertical {
+#main-nav button {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 0.9rem;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin: 25px 0;
+    align-items: center;
+    justify-content: center;
 }
 
-button {
-    background: #3d2a1a;
-    color: #f5e6c8;
-    border: 2px solid #2a1a10;
-    padding: 16px;
-    font-size: 18px;
-    cursor: pointer;
+/* Screens */
+.screen { display: none; }
+.screen.active { display: block; animation: fadeIn 0.3s; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* UI Elemente */
+.menu-btn {
     width: 100%;
+    padding: 20px;
+    margin: 10px 0;
+    background: var(--card-bg);
+    border: 1px solid #444;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-button:hover {
-    background: #6b4a2f;
-}
+.menu-btn:active { background: #3a3a3a; transform: scale(0.98); }
 
-.back {
+.info-box {
+    background: #222;
+    padding: 15px;
+    border-radius: 8px;
     margin-top: 20px;
+    border-left: 4px solid var(--accent);
 }
 
-.hidden {
-    display: none;
+.btn-back {
+    background: none;
+    border: none;
+    color: var(--accent);
+    padding: 10px 0;
+    cursor: pointer;
 }
 
-.panel {
-    background: #7b5a3a;
-    border: 2px solid #3d2a1a;
+/* Schiffs-Karten & Listen */
+.card {
+    background: var(--card-bg);
     padding: 15px;
-    margin-top: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
 }
 
-.cityCard, .shipCard {
-    background: #7b5a3a;
-    border: 2px solid #3d2a1a;
-    padding: 15px;
-    margin-bottom: 12px;
+.status-traveling { color: var(--accent); font-style: italic; }
+.status-docked { color: var(--safe); }
+
+.log-entry {
+    font-size: 0.85rem;
+    padding: 8px;
+    border-bottom: 1px solid #333;
 }
+
+.timer { font-weight: bold; font-family: monospace; }
