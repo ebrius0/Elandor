@@ -1,3 +1,5 @@
+alert("LOGIK GELADEN!");
+
 /**
  * ELANDOR - Core Logic (MVP)
  * Architektur: State-Driven, Mobile-First
